@@ -17,7 +17,6 @@ export function defineContractComponents(world: World) {
           current_defense: RecsType.Number,
           cost: RecsType.Number,
           role: RecsType.Number,
-          is_captain: RecsType.Boolean,
         },
         {
           metadata: {
@@ -46,6 +45,20 @@ export function defineContractComponents(world: World) {
         }
       );
     })(),
+    DeckCard: (() => {
+      const name = "DeckCard";
+      return defineComponent(
+        world,
+        {
+          player: RecsType.Number,
+          card_index: RecsType.Number,
+          token_id: RecsType.Number,
+          card_state: RecsType.Number, // VOIR ENUM?
+          is_captain: RecsType.Boolean,
+        },
+        {}
+      );
+    })(),
     Player: (() => {
       const name = "Player";
       return defineComponent(
@@ -53,10 +66,10 @@ export function defineContractComponents(world: World) {
         {
           game_id: RecsType.Number,
           player: RecsType.Number,
-          goalkeeper: RecsType.Number,
-          defender: RecsType.Number,
-          midfielder: RecsType.Number,
-          attacker: RecsType.Number,
+          goalkeeper: RecsType.OptionalEntity,
+          defender: RecsType.OptionalEntity,
+          midfielder: RecsType.OptionalEntity,
+          attacker: RecsType.OptionalEntity,
           remaining_energy: RecsType.Number,
         },
         {
